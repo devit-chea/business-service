@@ -1,0 +1,10 @@
+Django
+django-environ
+djangorestframework==3.14.0
+django-auditlog
+psycopg2
+requests
+drf_extra_fields
+boto3
+django-storages
+wdg-file-storage
