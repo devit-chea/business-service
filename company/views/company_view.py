@@ -13,8 +13,10 @@ from rest_framework.response import Response
 
 class CompanyView(viewsets.ModelViewSet):
     permission_classes = []
+    
     model = Company
     queryset = Company.objects.all()
+    serializer_class = CompanySerializer
 
     def get_serializer_class(self):
         if self.action in ["list", "retrieve"]:

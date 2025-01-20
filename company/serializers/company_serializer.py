@@ -45,12 +45,19 @@ class BranchSerializer(serializers.ModelSerializer):  # As company branch
 
 
 class CompanySerializer(WritableNestedModelSerializer):
-    shift_time = ShiftTimeSerializer(many=True, required=True)
+    shifttimemodel_related = ShiftTimeSerializer(many=True, required=True)
 
     class Meta:
         model = Company
         fields = "__all__"
         
+        extra_kwargs = {
+            "established_at": {
+                "required": True,
+                "allow_null": False,
+            },
+        }
+
     def validate(self, attrs):
         validated_data = super().validate(attrs)
 
@@ -76,14 +83,11 @@ class CompanySerializer(WritableNestedModelSerializer):
                     {"type": "The Branch cannot have child branch."}
                 )
 
-        # TODO: Check branch no child as company and raise
-
         return super().validate(attrs)
 
 
-class CompanyListSerializer(serializers.ModelSerializer):
-    company_branches = BranchSerializer(many=True, required=False)
-    shift_time = ShiftTimeSerializer(many=True, read_only=True)
+class CompanyListSerializer(WritableNestedModelSerializer):
+    shift_times = ShiftTimeSerializer(many=True, read_only=True)
     parent = PresentablePrimaryKeyRelatedField(
         queryset=Company.objects.all(),
         presentation_serializer=ParentCompanyInfoSerializer,
@@ -94,3 +98,4 @@ class CompanyListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = "__all__"
+        

@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from company.models.shift_time_model import ShiftTimeModel
-from drf_writable_nested import WritableNestedModelSerializer
 
 
 class ShiftTimeSerializer(serializers.ModelSerializer):
