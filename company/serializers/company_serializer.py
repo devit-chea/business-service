@@ -3,7 +3,7 @@ from company.models.company_model import Company
 from company.constants import CompanyType
 from drf_writable_nested import WritableNestedModelSerializer
 from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
-from .shift_time_serializer import ShiftTimeSerializer
+from .shift_time_serializer import ShiftTimeDetailSerializer, ShiftTimeSerializer
 
 
 class ParentCompanyInfoSerializer(serializers.ModelSerializer):
@@ -87,7 +87,7 @@ class CompanySerializer(WritableNestedModelSerializer):
 
 
 class CompanyListSerializer(WritableNestedModelSerializer):
-    shift_times = ShiftTimeSerializer(many=True, read_only=True)
+    shifttimemodel_related = ShiftTimeDetailSerializer(many=True, read_only=True)
     parent = PresentablePrimaryKeyRelatedField(
         queryset=Company.objects.all(),
         presentation_serializer=ParentCompanyInfoSerializer,

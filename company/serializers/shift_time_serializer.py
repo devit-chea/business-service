@@ -11,4 +11,10 @@ class ShiftTimeSerializer(serializers.ModelSerializer):
 class ShiftTimeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShiftTimeModel
-        exclude = ["write_date", "create_uid", "write_uid"]
+        exclude = [
+            "company",
+            "create_date",
+            "write_date",
+            "create_uid",
+            "write_uid",
+        ]

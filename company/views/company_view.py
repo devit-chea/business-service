@@ -35,15 +35,3 @@ class CompanyView(viewsets.ModelViewSet):
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
-
-    def update(self, request):
-        with transaction.atomic():
-            try:
-                instance = self.get_object()
-                serializer = self.get_serializer(instance, data=request.data)
-                serializer.is_valid(raise_exception=True)
-                serializer.save()
-                return Response(serializer.data)
-            except Exception as e:
-                transaction.set_rollback(True)
-                raise serializers.ValidationError(detail=e)
