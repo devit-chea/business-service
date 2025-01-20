@@ -23,6 +23,7 @@ urlpatterns = [
         include(
             [
                 path("", include("company.urls")),
+                path("", include("currency.urls")),
             ]
         ),
     ),

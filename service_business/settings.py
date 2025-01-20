@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Apps
-    'company'
+    'company',
+    'currency'
 ]
 
 MIDDLEWARE = [

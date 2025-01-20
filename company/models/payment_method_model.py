@@ -3,7 +3,7 @@ from company.constants import ModelFieldChoices
 from .abstract_model import AbstractBaseCompany
 
 
-class PaymentMethod(AbstractBaseCompany):
+class PaymentMethodModel(AbstractBaseCompany):
     bank_name = models.CharField(blank=False, null=False)
     account_holder_name = models.CharField(blank=True)
     account_number = models.CharField(blank=True)

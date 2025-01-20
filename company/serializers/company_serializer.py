@@ -1,9 +1,18 @@
-from rest_framework import serializers
-from company.models.company_model import Company
 from company.constants import CompanyType
-from drf_writable_nested import WritableNestedModelSerializer
+from company.models.company_currency_model import CompanyCurrency
+from company.models.company_model import Company
 from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
+from drf_writable_nested import WritableNestedModelSerializer
+from rest_framework import serializers
+
+from .payment_method_serializer import PaymentMethodSerializer
 from .shift_time_serializer import ShiftTimeDetailSerializer, ShiftTimeSerializer
+
+
+class CompanyCurrencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyCurrency
+        fields = "__all__"
 
 
 class ParentCompanyInfoSerializer(serializers.ModelSerializer):
@@ -46,11 +55,13 @@ class BranchSerializer(serializers.ModelSerializer):  # As company branch
 
 class CompanySerializer(WritableNestedModelSerializer):
     shifttimemodel_related = ShiftTimeSerializer(many=True, required=True)
-
+    paymentmethodmodel_related = PaymentMethodSerializer(many=True, required=True)
+    company_currency = CompanyCurrencySerializer(many=True, required=True)
+    
     class Meta:
         model = Company
         fields = "__all__"
-        
+
         extra_kwargs = {
             "established_at": {
                 "required": True,
@@ -87,7 +98,14 @@ class CompanySerializer(WritableNestedModelSerializer):
 
 
 class CompanyListSerializer(WritableNestedModelSerializer):
-    shifttimemodel_related = ShiftTimeDetailSerializer(many=True, read_only=True)
+    shifttimemodel_related = ShiftTimeDetailSerializer(
+        many=True,
+        read_only=True,
+    )
+    paymentmethodmodel_related = PaymentMethodSerializer(
+        many=True,
+        read_only=True,
+    )
     parent = PresentablePrimaryKeyRelatedField(
         queryset=Company.objects.all(),
         presentation_serializer=ParentCompanyInfoSerializer,
@@ -98,4 +116,3 @@ class CompanyListSerializer(WritableNestedModelSerializer):
     class Meta:
         model = Company
         fields = "__all__"
-        
