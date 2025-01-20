@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  business-service:
+    build: .
+    container_name: business-service
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=service_business.settings
+    depends_on:
+      - business-db
+    restart: on-failure
+
+  business-db:
+    image: postgres:15
+    container_name: business-db
+    environment:
+      POSTGRES_USER: business_user
+      POSTGRES_PASSWORD: business_pass
+      POSTGRES_DB: business_db
+    ports:
+      - "5432:5432"
+
+  business-pgadmin:
+    image: dpage/pgadmin4
+    container_name: business-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com 
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5051:80"
+    depends_on:
+      - business-db
+
+volumes:
+  postgres_data:
