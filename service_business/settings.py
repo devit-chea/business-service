@@ -150,8 +150,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Rest framework
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+        # "rest_framework.permissions.IsAuthenticated",
+        'rest_framework.permissions.AllowAny',
     ],
     "DEFAULT_PAGINATION_CLASS": "service_business.pagination.CustomPagination",
     "DEFAULT_FILTER_BACKENDS": ["rest_framework.filters.OrderingFilter"],

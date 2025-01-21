@@ -3,7 +3,7 @@ from .abstract_model import AbstractBaseCompany
 from .abstract_base_model import AbstractBaseModel
 
 
-class ShiftTimeModel(AbstractBaseCompany, AbstractBaseModel):
+class ShiftTime(AbstractBaseCompany, AbstractBaseModel):
     start_time = models.TimeField()
     end_time = models.TimeField()
     start_break = models.TimeField()
@@ -11,9 +11,6 @@ class ShiftTimeModel(AbstractBaseCompany, AbstractBaseModel):
     total_break = models.DecimalField(default=0.0, decimal_places=2, max_digits=4)
     description = models.CharField(max_length=55, null=True, blank=True)
     is_active = models.BooleanField(default=False)
-
-    # To define model description
-    model_description = "Shift Times"
 
     class Meta:
         db_table = "shift_time"

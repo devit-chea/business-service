@@ -7,9 +7,6 @@ class Holiday(AbstractBaseCompany):
     date= models.DateField()
     description = models.TextField(blank=True)
     
-    # To define model description
-    model_description = "Holiday"
-    
     class Meta:
         db_table = "holiday"
 

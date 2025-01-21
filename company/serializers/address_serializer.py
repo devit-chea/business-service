@@ -1,17 +1,16 @@
 from rest_framework import serializers
-from ..models.holiday_model import Holiday
+from ..models.address_model import Address
 
 
-class HolidaySerializer():
-    color = serializers.SerializerMethodField()
+class AddressSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Holiday
+        model = Address
         fields = '__all__'
         
-        
-class HolidayDetailSerializer(serializers.ModelSerializer):
+
+class AddressDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Holiday
+        model = Address
         exclude = [
             "company",
             "create_date",

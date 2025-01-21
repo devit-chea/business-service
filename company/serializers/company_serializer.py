@@ -5,7 +5,7 @@ from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
-from .payment_method_serializer import PaymentMethodSerializer
+from .payment_serializer import PaymentSerializer
 from .shift_time_serializer import ShiftTimeDetailSerializer, ShiftTimeSerializer
 
 
@@ -55,7 +55,7 @@ class BranchSerializer(serializers.ModelSerializer):  # As company branch
 
 class CompanySerializer(WritableNestedModelSerializer):
     shifttimemodel_related = ShiftTimeSerializer(many=True, required=True)
-    paymentmethodmodel_related = PaymentMethodSerializer(many=True, required=True)
+    paymentmethodmodel_related = PaymentSerializer(many=True, required=True)
     company_currency = CompanyCurrencySerializer(many=True, required=True)
     
     class Meta:
@@ -102,7 +102,7 @@ class CompanyListSerializer(WritableNestedModelSerializer):
         many=True,
         read_only=True,
     )
-    paymentmethodmodel_related = PaymentMethodSerializer(
+    paymentmethodmodel_related = PaymentSerializer(
         many=True,
         read_only=True,
     )

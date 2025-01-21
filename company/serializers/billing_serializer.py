@@ -1,17 +1,15 @@
 from rest_framework import serializers
-from ..models.holiday_model import Holiday
+from ..models.billing_model import Billing
 
 
-class HolidaySerializer():
-    color = serializers.SerializerMethodField()
+class BillingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Holiday
+        model = Billing
         fields = '__all__'
         
-        
-class HolidayDetailSerializer(serializers.ModelSerializer):
+class BillingDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Holiday
+        model = Billing
         exclude = [
             "company",
             "create_date",

@@ -1,16 +1,16 @@
 from rest_framework import serializers
-from company.models.shift_time_model import ShiftTime
+from company.models.payment_model import Payment
 
 
-class ShiftTimeSerializer(serializers.ModelSerializer):
+class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ShiftTime
+        model = Payment
         fields = "__all__"
 
 
-class ShiftTimeDetailSerializer(serializers.ModelSerializer):
+class PaymentDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ShiftTime
+        model = Payment
         exclude = [
             "company",
             "create_date",

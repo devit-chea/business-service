@@ -1,14 +1,11 @@
 from company.models.company_model import Company
-from rest_framework import serializers
 from django.db.models import Q
 from company.serializers.company_serializer import (
     CompanyListSerializer,
     CompanySerializer,
 )
-from django.db import transaction
 from rest_framework import viewsets
 from company.constants import CompanyType
-from rest_framework.response import Response
 
 
 class CompanyView(viewsets.ModelViewSet):
