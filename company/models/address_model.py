@@ -13,9 +13,6 @@ class Address(AbstractBaseCompany):
     country = models.CharField(max_length=255, blank=True)
     latitude = models.CharField(max_length=255, blank=True, null=False)
     longitude = models.CharField(max_length=255, blank=True, null=False)
-    
+
     class Meta:
         db_table = "address"
-
-    
-  

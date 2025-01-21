@@ -3,7 +3,7 @@ from .abstract_model import AbstractBaseCompany
 
 
 class Billing(AbstractBaseCompany):
-    legal_name = models.CharField(max_length=255, blank=True)
+    legal_name = models.CharField(max_length=255, blank=False, null=False)
     registration_tax_id = models.CharField(max_length=255, null=True, blank=True)
     exemption_tax_number = models.CharField(max_length=255, null=True, blank=True)
     phone1 = models.CharField(max_length=255, blank=True, null=True)

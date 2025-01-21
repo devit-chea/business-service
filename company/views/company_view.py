@@ -6,9 +6,9 @@ from company.serializers.company_serializer import (
 )
 from rest_framework import viewsets
 from company.constants import CompanyType
+from .base_view import BaseModelViewSet
 
-
-class CompanyView(viewsets.ModelViewSet):
+class CompanyView(BaseModelViewSet):
     permission_classes = []
     
     model = Company
