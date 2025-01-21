@@ -4,7 +4,6 @@ from company.serializers.company_serializer import (
     CompanyListSerializer,
     CompanySerializer,
 )
-from rest_framework import viewsets
 from company.constants import CompanyType
 from .base_view import BaseModelViewSet
 
