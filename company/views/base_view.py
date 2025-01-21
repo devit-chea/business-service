@@ -21,7 +21,7 @@ class BaseModelViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         try:
-            
+            # ! Remove when authentication done
             company_id = self.request.data["company_id"]
 
             company = Company.objects.filter(id=company_id).first()
