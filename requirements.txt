@@ -7,5 +7,4 @@ requests
 drf_extra_fields
 boto3
 django-storages
-wdg-file-storage
 drf-writable-nested

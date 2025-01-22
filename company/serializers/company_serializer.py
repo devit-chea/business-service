@@ -54,9 +54,9 @@ class BranchSerializer(serializers.ModelSerializer):  # As company branch
 
 
 class CompanySerializer(WritableNestedModelSerializer):
-    shifttimemodel_related = ShiftTimeSerializer(many=True, required=True)
-    paymentmethodmodel_related = PaymentSerializer(many=True, required=True)
-    company_currency = CompanyCurrencySerializer(many=True, required=True)
+    # shifttimemodel_related = ShiftTimeSerializer(many=True, required=True)
+    # paymentmethodmodel_related = PaymentSerializer(many=True, required=True)
+    # company_currency = CompanyCurrencySerializer(many=True, required=True)
     
     class Meta:
         model = Company

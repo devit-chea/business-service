@@ -24,4 +24,6 @@ COPY . /app/
 EXPOSE 8000
 
 # Run the application
-CMD ["gunicorn", "-b", "0.0.0.0:8001", "service_business.wsgi:application"]
+# CMD ["gunicorn", "-b", "0.0.0.0:8001", "service_business.wsgi:application"]
+
+# ENTRYPOINT [ "entrypoint.sh" ]
